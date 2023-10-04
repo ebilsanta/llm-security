@@ -24,7 +24,6 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-# Initialize the database
 with app.app_context():
     db.create_all()
 
@@ -32,7 +31,6 @@ users = ["john_doe", "jane_smith", "bob_jones", "alice_green", "michael_wang", "
 
 @app.route('/')
 def index():
-    # Example usage: Add a new user to the database
     for user in users:
         new_user = User(username=user)
         db.session.add(new_user)
@@ -42,7 +40,7 @@ def index():
 
 @app.route('/message', methods=['POST'])
 def send_message():
-    message = request.json.get('message')  # Assuming JSON payload with {'query': 'SELECT * FROM user;'}
+    message = request.json.get('message')  
     function_descriptions = [
         {
             "name": "ask_database",
